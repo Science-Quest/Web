@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+
+Route::get('/logic-games', function () {
+    return view('categories.logic-games');
+});
+
+
+Route::get('/games/penguin-dash', function () {
+    return view('logic-games.penguin-dash-detail');
+})->name('games.penguin-dash-detail');
