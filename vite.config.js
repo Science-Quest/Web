@@ -9,6 +9,10 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
         }),
-
     ],
+    server: {
+        port: 3000,
+        host: '127.0.0.1',
+        cors: true,
+    }
 });
