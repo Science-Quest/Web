@@ -38,7 +38,8 @@ class LevelSelector extends Component
     {
         $target = $this->selectedLevel ?? $this->latestUnlocked;
 
-        return redirect()->away("http://games.sciencequest.local/games/{$this->game}/{$target['id']}");
+        $gameUrl = env('GAME_URL');
+        return redirect()->away("{$gameUrl}/games/{$this->game}/{$target['id']}");
     }
 
     public function render()

@@ -3,3 +3,43 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+
+
+@tailwind utilities;
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-40px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in-left {
+    opacity: 0;
+    /* hidden by default */
+    transform: translateX(-50px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.animate-fade-in-left.show {
+    animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+}

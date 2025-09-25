@@ -3,16 +3,14 @@
     <div class="mt-3 overflow-x-auto">
         <div class="flex gap-2 w-max px-2">
             @foreach ($levels as $level)
-                <button
-                    wire:click="selectLevel({{ $level['id'] }})"
-                    class="w-12 h-12 rounded-full flex items-center justify-center font-bold transition shrink-0
-                            {{ $level['unlocked'] 
-                                ? ($selectedLevel && $selectedLevel['id'] === $level['id'] 
-                                    ? 'bg-blue-600 text-white ring-2 ring-blue-400' 
-                                    : 'bg-blue-400 hover:bg-blue-500 text-white')
-                                : 'bg-gray-300 cursor-not-allowed text-gray-600' }}"
-                    {{ $level['unlocked'] ? '' : 'disabled' }}
-                >
+                <button wire:click="selectLevel({{ $level['id'] }})" class="w-12 h-12 rounded-full flex items-center justify-center font-bold transition shrink-0
+                            @if(!$level['unlocked'])
+                                bg-gray-300 cursor-not-allowed text-gray-600
+                            @elseif($selectedLevel && $selectedLevel['id'] === $level['id'])
+                                bg-[#2199d1] text-white border-2 border-[#2199d1]
+                            @else
+                                bg-transparent text-[#2199d1] border-2 border-[#2199d1] hover:bg-[#2199d1] hover:text-white
+                            @endif" {{ $level['unlocked'] ? '' : 'disabled' }}>
                     @if ($level['unlocked'])
                         {{ $level['id'] }}
                     @else
@@ -31,8 +29,7 @@
     @endif
 
     <!-- GO Button -->
-    <button
-        wire:click="go"
+    <button wire:click="go"
         class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
         GO
     </button>

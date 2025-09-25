@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
 Route::get('/logic-games', function () {
     return view('categories.logic-games');
 });
