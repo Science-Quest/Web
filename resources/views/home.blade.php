@@ -34,7 +34,7 @@
     <!-- Auth buttons (kanan) -->
     <div class="hidden md:flex items-center gap-4 font-semibold">
       <a href="#">Sign In</a>
-      <a href="#" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+      <a href="" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
         Get Started
       </a>
     </div>
@@ -64,7 +64,7 @@
           <li><a href="#">Kontak</a></li>
           <li><a href="#">Sign In</a></li>
           <li>
-            <a href="#" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+            <a href="#register" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
               Get Started
             </a>
           </li>
@@ -88,9 +88,11 @@
     </p>
     
     <!-- Button -->
-    <button class="mt-6 bg-gradient-to-r from-[#53C2F0] to-[#2D9CDB] text-white font-semibold pl-8 pr-48 py-3 rounded-r-full shadow-lg hover:opacity-90 transition">
-      Play Now
-    </button>
+    <a href="#category">
+      <button class="mt-6 bg-gradient-to-r from-[#53C2F0] to-[#2D9CDB] text-white font-semibold pl-8 pr-48 py-3 rounded-r-full shadow-lg hover:opacity-90 transition">
+        Play Now
+      </button>
+    </a>
   </div>
 
   <!-- Hero Image -->
@@ -122,7 +124,7 @@
   <!-- Category Section -->
 <!-- Category Section -->
 <!-- Category Section -->
-<section class="px-6 md:px-16 py-16 bg-gradient-to-tr from-white via-[#E9F6FE] to-[#53C2F0] rounded-xl">
+<section class="px-6 md:px-16 py-16 bg-gradient-to-tr from-white via-[#E9F6FE] to-[#53C2F0] rounded-xl" id="category">
   <h2 class="text-xl md:text-2xl font-bold text-[#2D9CDB] mb-10 text-center md:text-left">
     Pilih Kategori
   </h2>
@@ -138,12 +140,13 @@
   </div>
   <div class="p-4 text-center">
     <h3 class="font-bold text-gray-800">Aritmatika</h3>
-    <p class="text-sm text-gray-500 mt-1">Lorem ipsum dolor sit amet ...</p>
-    
+    <p class="text-sm text-gray-500 mt-1"></p>
+    <a href="https://games.sciencequest.online/games/connect-things/1">
+      <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
+        GO
+      </button>
+    </a>
     <!-- Tombol sedang, simetris -->
-    <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
-      GO
-    </button>
   </div>
 </div>
 
@@ -156,12 +159,14 @@
   </div>
   <div class="p-4 text-center">
     <h3 class="font-bold text-gray-800">Logika</h3>
-    <p class="text-sm text-gray-500 mt-1">Lorem ipsum dolor sit amet ...</p>
+    <p class="text-sm text-gray-500 mt-1"></p>
     
     <!-- Tombol sedang, simetris -->
-    <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
-      GO
-    </button>
+    <a href="https://games.sciencequest.online/games/connect-things/1">
+      <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
+        GO
+      </button>
+    </a>
   </div>
 </div>
 
@@ -173,12 +178,13 @@
   </div>
   <div class="p-4 text-center">
     <h3 class="font-bold text-gray-800">Memori</h3>
-    <p class="text-sm text-gray-500 mt-1">Lorem ipsum dolor sit amet ...</p>
-    
+    <p class="text-sm text-gray-500 mt-1"></p>
+    <a href="https://games.sciencequest.online/games/box-recall/1">
+      <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
+        GO
+      </button>
+    </a>
     <!-- Tombol sedang, simetris -->
-    <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
-      GO
-    </button>
   </div>
 </div>
 
@@ -190,7 +196,7 @@
   </div>
   <div class="p-4 text-center">
     <h3 class="font-bold text-gray-800">Biologi</h3>
-    <p class="text-sm text-gray-500 mt-1">Lorem ipsum dolor sit amet ...</p>
+    <p class="text-sm text-gray-500 mt-1"></p>
     
     <!-- Tombol sedang, simetris -->
     <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
