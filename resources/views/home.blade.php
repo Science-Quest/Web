@@ -7,6 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
 </head>
 <body class="font-sans bg-[#F7FBFF] text-gray-800">
 
@@ -26,8 +28,8 @@
 
     <!-- Menu Desktop (tengah) -->
     <ul class="hidden md:flex flex-1 justify-center items-center gap-12 font-semibold">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Tentang Kami</a></li>
+      <li><a href="{{ url('/') }}">Home</a></li>
+      <li><a href="{{ route('about') }}">Tentang Kami</a></li>
       <li><a href="#">Kontak</a></li>
     </ul>
 
@@ -59,8 +61,8 @@
       <!-- Dropdown mobile -->
       <div x-show="open" x-transition class="absolute top-20 left-0 w-full flex justify-center">
         <ul class="bg-[#45C3FF] rounded-2xl shadow-lg w-[90%] py-6 flex flex-col items-center gap-4 font-semibold">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="{{ url('/') }}">Home</a></li>
+          <li><a href="{{ route('about') }}">Tentang Kami</a></li>
           <li><a href="#">Kontak</a></li>
           <li><a href="#">Sign In</a></li>
           <li>
@@ -204,12 +206,6 @@
     </button>
   </div>
 </div>
-
-
-
-
-
-    
 
   </div>
 </section>
