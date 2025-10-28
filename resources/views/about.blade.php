@@ -48,7 +48,7 @@
             <img src="{{ asset('img/team.png') }}" alt="Tim Science Quest" class="w-[320px] md:w-[420px] rounded-xl shadow-lg">
         </div>
         <div class="md:w-1/2">
-            <h2 class="text-2xl font-bold text-blue-600 mb-6">MISI</h2>
+            <h2 class="text-2xl font-bold text-[#20B4FF] mb-6">MISI</h2>
             <p class="text-[#47BDF9] text-lg font-semibold leading-relaxed">
                 Pembelajaran Jadi Game Seru — Matematika, Logika, Biologi dikemas dalam game yang bikin ketagihan belajar. 
                 Belajar Fleksibel 24/7 — Akses materi kapan saja, di mana saja - cocok untuk siswa SD & SMP. 
