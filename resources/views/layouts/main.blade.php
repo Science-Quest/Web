@@ -38,7 +38,7 @@
       <ul class="hidden md:flex flex-1 justify-center items-center gap-10 lg:gap-14 font-semibold">
         <li><a href="{{ url('/') }}" class="hover:opacity-80 transition">Home</a></li>
         <li><a href="{{ route('about') }}" class="hover:opacity-80 transition">Tentang Kami</a></li>
-        <li><a href="#" class="hover:opacity-80 transition">Kontak</a></li>
+        <li><a href="{{ route('contact') }}" class="hover:opacity-80 transition">Kontak</a></li>
       </ul>
 
       <!-- Auth Buttons (desktop & tablet) -->
@@ -76,7 +76,7 @@
         <ul class="bg-[#45C3FF] rounded-2xl shadow-lg w-[90%] py-6 flex flex-col items-center gap-4 font-semibold text-white">
           <li><a href="{{ url('/') }}" class="hover:opacity-80">Home</a></li>
           <li><a href="{{ route('about') }}" class="hover:opacity-80">Tentang Kami</a></li>
-          <li><a href="#" class="hover:opacity-80">Kontak</a></li>
+          <li><a href="{{ route('contact') }}" class="hover:opacity-80">Kontak</a></li>
           <li><a href="#" class="hover:opacity-80">Sign In</a></li>
           <li>
             <a href="#" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
@@ -104,14 +104,12 @@
 
       <!-- Social Media -->
       <div class="flex justify-center md:justify-start space-x-6">
-        <a href="#" class="bg-white text-[#45C3FF] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
-          <i class="fab fa-whatsapp text-xl"></i>
-        </a>
-        <a href="#" class="bg-white text-[#45C3FF] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
+        <a href="https://www.instagram.com/sciencequest.id/" target="_blank" class="bg-white text-[#45C3FF] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
           <i class="fab fa-instagram text-xl"></i>
         </a>
-        <a href="#" class="bg-white text-[#45C3FF] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
-          <i class="fab fa-youtube text-xl"></i>
+        <a href="mailto:sciencequest@gmail.com"
+        class="bg-white text-[#2199d1] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
+            <i class="fas fa-envelope text-xl"></i>
         </a>
       </div>
 
@@ -119,8 +117,7 @@
       <div>
         <h3 class="font-bold mb-3">Company</h3>
         <ul class="space-y-2 text-sm text-gray-100">
-          <li><a href="#" class="hover:underline">About Us</a></li>
-          <li><a href="#" class="hover:underline">Events</a></li>
+          <li><a href="{{ route('about') }}" class="hover:underline">About Us</a></li>
         </ul>
       </div>
 
@@ -128,8 +125,8 @@
       <div>
         <h3 class="font-bold mb-3">Support</h3>
         <ul class="space-y-2 text-sm text-gray-100">
-          <li><a href="#" class="hover:underline">FAQ</a></li>
-          <li><a href="#" class="hover:underline">Call Center</a></li>
+          <li><a href="{{ route('contact') }}" class="hover:underline">FAQ</a></li>
+          <li><a href="https://wa.me/085156504046" class="hover:underline">Call Center</a></li>
         </ul>
       </div>
     </div>

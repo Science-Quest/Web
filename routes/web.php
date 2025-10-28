@@ -18,7 +18,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
 Route::get('/logic-games', function () {
     return view('categories.logic-games');
 });
@@ -29,3 +28,7 @@ Route::get('/games/penguin-dash', function () {
 })->name('games.penguin-dash-detail');
 
 Route::get('/about', [PageController::class, 'about'])->name('about');
+
+// Halaman Contact
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+
