@@ -33,19 +33,6 @@
       <li><a href="#">Kontak</a></li>
     </ul>
 
-    <!-- Auth buttons (kanan) -->
-    <div class="hidden md:flex items-center gap-4 font-semibold">
-      <a href="#">Sign In</a>
-      <a href="" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
-        Get Started
-      </a>
-
-      <!-- Menu Desktop -->
-      <ul class="hidden md:flex flex-1 justify-center items-center gap-10 lg:gap-14 font-semibold">
-        <li><a href="{{ url('/') }}" class="hover:opacity-80 transition">Home</a></li>
-        <li><a href="{{ route('about') }}" class="hover:opacity-80 transition">Tentang Kami</a></li>
-        <li><a href="{{ route('contact') }}" class="hover:opacity-80 transition">Kontak</a></li>
-      </ul>
 
       <!-- Auth Buttons (desktop & tablet) -->
       <div class="hidden md:flex items-center gap-4 font-semibold">
