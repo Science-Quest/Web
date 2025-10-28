@@ -9,6 +9,8 @@
   <title>Science Quest</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
   @livewireStyles
+  <!-- Favicon -->
+  <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
 </head>
 
 <body class="font-sans bg-[#eef6fa] text-gray-800">
@@ -24,6 +26,18 @@
       <a href="{{ url('/') }}" class="flex items-center gap-2">
         <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-10 md:h-12 object-contain">
         <span class="hidden sm:inline text-lg md:text-xl font-bold tracking-wide">Science Quest</span>
+    <!-- Menu Desktop (tengah) -->
+    <ul class="hidden md:flex flex-1 justify-center items-center gap-12 font-semibold">
+      <li><a href="{{ url('/') }}">Home</a></li>
+      <li><a href="{{ route('about') }}">Tentang Kami</a></li>
+      <li><a href="#">Kontak</a></li>
+    </ul>
+
+    <!-- Auth buttons (kanan) -->
+    <div class="hidden md:flex items-center gap-4 font-semibold">
+      <a href="#">Sign In</a>
+      <a href="" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+        Get Started
       </a>
 
       <!-- Menu Desktop -->
@@ -71,13 +85,217 @@
           <li><a href="{{ route('contact') }}" class="hover:opacity-80">Kontak</a></li>
           <li><a href="#" class="hover:opacity-80">Sign In</a></li>
           <li>
-            <a href="#" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+            <a href="#register" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
               Get Started
             </a>
           </li>
         </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
+</div>
+
+
+<!-- Padding top biar konten nggak ketiban navbar -->
+<div class="pt-20">
+  <section class="flex flex-col-reverse md:flex-row justify-between items-center px-6 md:px-16 py-16 bg-gradient-to-r from-white via-[#E9F6FE] to-[#B5E4FB]">
+  <div class="max-w-lg text-center md:text-left">
+    <h1 class="text-4xl md:text-5xl font-bold text-[#2D9CDB] leading-tight">
+      Improve <br/> your mind
+    </h1>
+    <p class="text-gray-600 mt-4 text-base md:text-lg">
+      Do you like quizzes and competition? Let’s find quiz on any topic! <br/>
+      Play, share, and study on the app
+    </p>
+    
+    <!-- Button -->
+    <a href="#category">
+      <button class="mt-6 bg-gradient-to-r from-[#53C2F0] to-[#2D9CDB] text-white font-semibold pl-8 pr-48 py-3 rounded-r-full shadow-lg hover:opacity-90 transition">
+        Play Now
+      </button>
+    </a>
+  </div>
+
+  <!-- Hero Image -->
+  <div class="mt-10 md:mt-0">
+    <img src="{{ asset('img/hero.png') }}" alt="hero" class="w-64 md:w-80 lg:w-96"/>
+  </div>
+</section>
+
+
+<!-- About Section -->
+<section class="px-6 md:px-16 py-16 bg-gradient-to-r from-[#98DCFF] via-[#E0F4FF] to-white">
+  <div class="flex flex-col md:flex-row items-center gap-10">
+    <div class="w-full md:w-1/2 flex justify-center">
+      <img src="{{ asset('img/about.png') }}" alt="app" class="rounded-lg w-70 md:w-80 lg:w-[350px]"/>
+    </div>
+    <div class="w-full md:w-1/2 text-center md:text-left">
+      <h2 class="text-2xl md:text-3xl font-bold text-[#2D9CDB]">SIAP UNTUK BERMAIN?</h2>
+      <p class="mt-4 text-[#2D9CDB] font-semibold">MAINkan permainan, belajar, menang, kumpulkan poin</p>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        Science Quest adalah platform game edukasi berbasis website seru yang dirancang untuk anak SD dan SMP! 
+        Dengan berbagai pilihan game yang menyenangkan, anak-anak bisa belajar logika, aritmatika, biologi, kuantum, 
+        dan banyak lagi, sambil bermain.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Category Section -->
+<!-- Category Section -->
+<!-- Category Section -->
+<section class="px-6 md:px-16 py-16 bg-gradient-to-tr from-white via-[#E9F6FE] to-[#53C2F0] rounded-xl" id="category">
+  <h2 class="text-xl md:text-2xl font-bold text-[#2D9CDB] mb-10 text-center md:text-left">
+    Pilih Kategori
+  </h2>
+
+  <!-- Grid 2 kolom -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 place-items-center">
+  {{-- card --}}
+  <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden w-full shadow-sm hover:shadow-md transition">
+  <div class="h-32 bg-gray-100">
+    <img src="{{ asset('img/math.png') }}" 
+         alt="math" 
+         class="h-full w-full object-cover"/>
+  </div>
+  <div class="p-4 text-center">
+    <h3 class="font-bold text-gray-800">Aritmatika</h3>
+    <p class="text-sm text-gray-500 mt-1"></p>
+    <a href="https://games.sciencequest.online/games/connect-things/1">
+      <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
+        GO
+      </button>
+    </a>
+    <!-- Tombol sedang, simetris -->
+  </div>
+</div>
+
+
+  <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden w-full shadow-sm hover:shadow-md transition">
+  <div class="h-32 bg-gray-100">
+    <img src="{{ asset('img/logic.png') }}" 
+         alt="math" 
+         class="h-full w-full object-cover"/>
+  </div>
+  <div class="p-4 text-center">
+    <h3 class="font-bold text-gray-800">Logika</h3>
+    <p class="text-sm text-gray-500 mt-1"></p>
+    
+    <!-- Tombol sedang, simetris -->
+    <a href="https://games.sciencequest.online/games/connect-things/1">
+      <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
+        GO
+      </button>
+    </a>
+  </div>
+</div>
+
+  <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden w-full shadow-sm hover:shadow-md transition">
+  <div class="h-32 bg-gray-100">
+    <img src="{{ asset('img/memori.png') }}" 
+         alt="math" 
+         class="h-full w-full object-cover"/>
+  </div>
+  <div class="p-4 text-center">
+    <h3 class="font-bold text-gray-800">Memori</h3>
+    <p class="text-sm text-gray-500 mt-1"></p>
+    <a href="https://games.sciencequest.online/games/box-recall/1">
+      <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
+        GO
+      </button>
+    </a>
+    <!-- Tombol sedang, simetris -->
+  </div>
+</div>
+
+  <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden w-full shadow-sm hover:shadow-md transition">
+  <div class="h-32 bg-gray-100">
+    <img src="{{ asset('img/biologi.png') }}" 
+         alt="math" 
+         class="h-full w-full object-cover"/>
+  </div>
+  <div class="p-4 text-center">
+    <h3 class="font-bold text-gray-800">Biologi</h3>
+    <p class="text-sm text-gray-500 mt-1"></p>
+    
+    <!-- Tombol sedang, simetris -->
+    <button class="mt-3 w-3/4 mx-auto bg-[#53C2F0] text-white font-semibold py-2 rounded-full hover:bg-[#3aabd8] transition block">
+      GO
+    </button>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+<!-- FAQ Section -->
+<section class="px-6 md:px-16 py-16 bg-white">
+  <h2 class="text-xl md:text-2xl font-bold text-[#2D9CDB] mb-8">FAQ</h2>
+  <div class="space-y-4  mx-auto">
+
+    <!-- Item -->
+   <!-- FAQ Item -->
+<div class="faq-item rounded-lg w-full">
+<div class="flex justify-center mt-5" x-data="{ open: false }">
+  <div class="w-11/12">
+
+    <!-- Header About -->
+    <section class="bg-[#4fc3f7] text-white p-4 rounded-xl flex justify-between items-center">
+      <h3 class="text-xl font-normal ml-3">Gimana sih cara mainnya?</h3>
+      <button @click="open = !open" class="mr-3">
+        <!-- Panah atas/bawah -->
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+             viewBox="0 0 24 24" class="w-6 h-6">
+          <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"/>
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+             viewBox="0 0 24 24" class="w-6 h-6">
+          <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5A.75.75 0 015.03 7.72L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+    </section>
+
+    <!-- Konten About -->
+    <section x-show="open" x-transition
+             class="bg-[#98DCFF] text-white p-6 rounded-b-xl text-sm mx-5 transition ease-in-out">
+      Lorem ipsum dolor sit amet. Et aperiam necessitatibus a ducimus soluta a consectetur
+      deserunt et quaerat illum aut ipsa illum sed dicta sunt. 33 voluptatem deserunt et
+      excepturi sunt et dolores laboriosam!
+    </section>
+
+  </div>
+</div>
+
+
+<div class="flex justify-center mt-5" x-data="{ open: false }">
+  <div class="w-11/12">
+
+    <!-- Header About -->
+    <section class="bg-[#4fc3f7] text-white p-4 rounded-xl flex justify-between items-center">
+      <h3 class="text-xl font-normal ml-3">Gimana cara daftarnya?</h3>
+      <button @click="open = !open" class="mr-3">
+        <!-- Panah atas/bawah -->
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+             viewBox="0 0 24 24" class="w-6 h-6">
+          <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"/>
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+             viewBox="0 0 24 24" class="w-6 h-6">
+          <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5A.75.75 0 015.03 7.72L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+    </section>
+
+    <!-- Konten About -->
+    <section x-show="open" x-transition
+             class="bg-[#98DCFF] text-white p-6 rounded-b-xl text-sm mx-5 transition ease-in-out">
+      Lorem ipsum dolor sit amet. Et aperiam necessitatibus a ducimus soluta a consectetur
+      deserunt et quaerat illum aut ipsa illum sed dicta sunt. 33 voluptatem deserunt et
+      excepturi sunt et dolores laboriosam!
+    </section>
+
   </div>
 
 
