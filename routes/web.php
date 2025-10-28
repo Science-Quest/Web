@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,9 @@ Route::get('/logic-games', function () {
 Route::get('/games/penguin-dash', function () {
     return view('logic-games.penguin-dash-detail');
 })->name('games.penguin-dash-detail');
+
+Route::get('/about', [PageController::class, 'about'])->name('about');
+
+// Halaman Contact
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+

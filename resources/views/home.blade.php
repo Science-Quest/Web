@@ -12,65 +12,73 @@
 </head>
 
 <body class="font-sans bg-[#eef6fa] text-gray-800">
-  <!-- Navbar -->
-  <header class="w-full flex justify-center pt-6">
-    <nav class="animate-slide-down fixed top-4 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] lg:w-[95%] 
-           bg-[#1d9fdb] text-white rounded-2xl shadow-lg px-6 
-           h-16 md:h-20 
-           flex items-center z-50
-           lg:text-lg">
+  <!-- ================== NAVBAR ================== -->
+  <div class="w-full flex justify-center bg-transparent pt-6">
+    <nav 
+      x-data="{ open: false }"
+      class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] lg:w-[95%]
+             bg-[#45C3FF] text-white rounded-2xl shadow-lg px-5 md:px-8 
+             h-16 md:h-20 flex items-center justify-between z-50 transition-all duration-300">
 
       <!-- Logo -->
-      <div class="flex items-center gap-2 h-full">
-        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-full w-auto object-contain">
-      </div>
-      <!-- Menu Desktop (tengah) -->
-      <ul class="hidden md:flex flex-1 items-center pl-12 gap-12 font-semibold">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Tentang Kami</a></li>
+      <a href="{{ url('/') }}" class="flex items-center gap-2">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-10 md:h-12 object-contain">
+        <span class="hidden sm:inline text-lg md:text-xl font-bold tracking-wide">Science Quest</span>
+      </a>
+
+      <!-- Menu Desktop -->
+      <ul class="hidden md:flex flex-1 justify-center items-center gap-10 lg:gap-14 font-semibold">
+        <li><a href="{{ url('/') }}" class="hover:opacity-80 transition">Home</a></li>
+        <li><a href="{{ route('about') }}" class="hover:opacity-80 transition">Tentang Kami</a></li>
+        <li><a href="{{ route('contact') }}" class="hover:opacity-80 transition">Kontak</a></li>
       </ul>
 
-      <!-- Auth buttons (kanan) -->
+      <!-- Auth Buttons (desktop & tablet) -->
       <div class="hidden md:flex items-center gap-4 font-semibold">
-        {{-- <a href="#">Sign In</a> --}}
-        <button onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});"
-          class="bg-[#e4f4fd] text-[#2199d1] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+        <a href="#" class="hover:opacity-80 transition">Sign In</a>
+        <a href="#" class="bg-white text-[#45C3FF] px-4 py-1.5 rounded-md font-semibold hover:bg-opacity-90 transition">
           Get Started
-        </button>
+        </a>
       </div>
 
-      <!-- Hamburger (Mobile) -->
-      <div x-data="{ open: false }" class="md:hidden ml-auto">
-        <button @click="open = !open" class="text-white focus:outline-none">
-          <!-- Icon hamburger -->
-          <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <!-- Icon close -->
-          <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+      <!-- Hamburger (mobile) -->
+      <button 
+        @click="open = !open" 
+        class="md:hidden text-white focus:outline-none transition-all duration-300">
+        <!-- Icon hamburger -->
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <!-- Icon close -->
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
 
-        <!-- Dropdown mobile -->
-        <div x-show="open" x-transition x-cloak class="absolute top-20 left-0 w-full flex justify-center">
-          <ul @click="open = !open"
-            class="bg-[#2199d1] rounded-2xl shadow-lg w-[90%] py-6 flex flex-col items-center gap-4 font-semibold">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Tentang Kami</a></li>
-            <li>
-              <a onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});"
-                class="bg-white text-[#2199d1] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
-                Get Started
-              </a>
-            </li>
-          </ul>
-        </div>
+      <!-- Dropdown mobile -->
+      <div 
+        x-show="open" 
+        x-transition 
+        class="absolute top-20 left-0 w-full flex justify-center md:hidden"
+        @click.away="open = false">
+        <ul class="bg-[#45C3FF] rounded-2xl shadow-lg w-[90%] py-6 flex flex-col items-center gap-4 font-semibold text-white">
+          <li><a href="{{ url('/') }}" class="hover:opacity-80">Home</a></li>
+          <li><a href="{{ route('about') }}" class="hover:opacity-80">Tentang Kami</a></li>
+          <li><a href="{{ route('contact') }}" class="hover:opacity-80">Kontak</a></li>
+          <li><a href="#" class="hover:opacity-80">Sign In</a></li>
+          <li>
+            <a href="#" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+              Get Started
+            </a>
+          </li>
+        </ul>
       </div>
     </nav>
-  </header>
+  </div>
 
 
   <!-- Padding top biar konten nggak ketiban navbar -->
@@ -227,7 +235,7 @@
             <div class="w-11/12">
 
               <!-- Header About -->
-              <section class="bg-[#1d9fdb] text-white p-4 rounded-xl flex justify-between items-center">
+              <section class="bg-[#20B4FF] text-white p-4 rounded-xl flex justify-between items-center">
                 <h3 class="text-xl font-normal ml-3">Gimana sih cara mainnya?</h3>
                 <button class="mr-3">
                   <!-- Panah atas/bawah -->
@@ -248,7 +256,7 @@
 
               <!-- Konten About -->
               <section x-show="open" x-transition x-cloak
-                class="bg-[#4fc3f7] font-semibold text-white p-6 rounded-b-xl mx-5 transition ease-in-out">
+                class="bg-[#78d2fc] font-semibold text-white p-6 rounded-b-xl mx-5 transition ease-in-out">
                 Pada bagian kategori, klik tombol Go akan membawamu pergi ke halaman game
               </section>
 
@@ -260,7 +268,7 @@
             <div class="w-11/12">
 
               <!-- Header About -->
-              <section class="bg-[#1d9fdb] text-white p-4 rounded-xl flex justify-between items-center">
+              <section class="bg-[#20B4FF] text-white p-4 rounded-xl flex justify-between items-center">
                 <h3 class="text-xl font-normal ml-3">Gimana cara daftarnya?</h3>
                 <button class="mr-3">
                   <!-- Panah atas/bawah -->
@@ -281,7 +289,7 @@
 
               <!-- Konten About -->
               <section x-show="open" x-transition x-cloak
-                class="bg-[#4fc3f7] text-white font-semibold p-6 rounded-b-xl mx-5 transition ease-in-out">
+                class="bg-[#78d2fc] text-white font-semibold p-6 rounded-b-xl mx-5 transition ease-in-out">
                 Saat ini Science Quest masih dalam pengembangan aplikasi utama. Pantau terus ya
               </section>
 
@@ -293,7 +301,7 @@
             <div class="w-11/12">
               <img src="" srcset="">
               <!-- Header About -->
-              <section class="bg-[#1d9fdb] text-white p-4 rounded-xl flex justify-between items-center">
+              <section class="bg-[#20B4FF] text-white p-4 rounded-xl flex justify-between items-center">
                 <h3 class="text-xl font-nomal ml-3">Seberapa lama kita harus menyelesaikan setiap level?</h3>
                 <button class="mr-3">
                   <!-- Panah atas/bawah -->
@@ -314,7 +322,7 @@
 
               <!-- Konten About -->
               <section x-show="open" x-transition x-cloak
-                class="bg-[#4fc3f7] text-white font-semibold p-6 rounded-b-xl  mx-5 transition ease-in-out">
+                class="bg-[#78d2fc] text-white font-semibold p-6 rounded-b-xl  mx-5 transition ease-in-out">
                 Ada beberapa level yang dibatasi waktu dan ada yang tidak. Setiap level bervariasi untuk batas waktunya.
               </section>
 
@@ -325,7 +333,7 @@
             <div class="w-11/12">
 
               <!-- Header About -->
-              <section class="bg-[#1d9fdb] text-white p-4 rounded-xl flex justify-between items-center">
+              <section class="bg-[#20B4FF] text-white p-4 rounded-xl flex justify-between items-center">
                 <h3 class="text-xl font-normal ml-3">Bagaimana caranya mengundang teman untuk ikut bergabung?</h3>
                 <button class="mr-3">
                   <!-- Panah atas/bawah -->
@@ -346,7 +354,7 @@
 
               <!-- Konten About -->
               <section x-show="open" x-transition x-cloak
-                class="bg-[#4fc3f7] text-white font-semibold p-6 rounded-b-xl mx-5 transition ease-in-out">
+                class="bg-[#78d2fc] text-white font-semibold p-6 rounded-b-xl mx-5 transition ease-in-out">
                 Saat ini Science Quest masih dalam pengembangan aplikasi utama. Untuk sekarang, kamu bisa undang teman -
                 temanmu untuk ikut mencoba Science Quest versi demo dahulu
               </section>
@@ -359,53 +367,48 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#1d9fdb] text-white py-10">
-      <div
-        class="grid max-w-3xl mx-auto px-6 grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 items-start text-center md:text-left ">
-
-        <!-- Logo + Nama -->
-        <div class="flex flex-col items-center md:items-start space-y-3">
-          <img src="{{ asset('img/footer-logo.png ')}}" alt="logo" class="w-45 h-48" />
-
-        </div>
-
-        <!-- Company -->
-        <div>
-          <h3 class="font-bold mb-3">Company</h3>
-          <ul class="space-y-2 text-sm text-gray-100">
-            <li><a href="#" class="hover:underline">Tentang kami</a></li>
-          </ul>
-        </div>
-
-        <!-- Support -->
-        <div>
-          <h3 class="font-bold mb-4">Bantuan</h3>
-          <ul class="space-y-4 text-sm text-gray-100">
-            <li><a href="#FAQ" class="hover:underline">FAQ</a></li>
-            <li>Sosial Media:</li>
-            <div class="flex justify-center md:justify-start space-x-6 mt-4">
-              <a href="https://www.instagram.com/sciencequest.id/" target="_blank"
-                class="bg-white text-[#2199d1] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
-                <i class="fab fa-instagram text-xl"></i>
-              </a>
-              <a href="mailto:sciencequest@gmail.com"
-                class="bg-white text-[#2199d1] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
-                <i class="fa-solid fa-envelope text-xl"></i>
-              </a>
-            </div>
-            <!-- Social Media -->
-            {{-- <li><a href="#" class="hover:underline">sciencequest.id@gmail.com</a></li>
-            <li><a href="#" class="hover:underline">@sciencequest.id</a></li> --}}
-          </ul>
-
-        </div>
+  <footer class="bg-[#20B4FF] text-white py-10">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 items-start text-center md:text-left">
+      
+      <!-- Logo -->
+      <div class="flex flex-col items-center md:items-start space-y-3">
+        <img src="{{ asset('img/footer-logo.png') }}" alt="logo" class="w-32 md:w-36">
       </div>
 
-      <!-- Copyright -->
-      <div class="mt-10 text-center text-sm text-gray-100">
-        © 2025 All Rights Reserved.
+      <!-- Social Media -->
+      <div class="flex justify-center md:justify-start space-x-6">
+        <a href="https://www.instagram.com/sciencequest.id/" target="_blank" class="bg-white text-[#45C3FF] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
+          <i class="fab fa-instagram text-xl"></i>
+        </a>
+        <a href="mailto:sciencequest@gmail.com"
+        class="bg-white text-[#2199d1] w-12 h-12 flex items-center justify-center rounded-full hover:opacity-80 transition">
+            <i class="fas fa-envelope text-xl"></i>
+        </a>
       </div>
-    </footer>
+
+      <!-- Company -->
+      <div>
+        <h3 class="font-bold mb-3">Company</h3>
+        <ul class="space-y-2 text-sm text-gray-100">
+          <li><a href="{{ route('about') }}" class="hover:underline">About Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div>
+        <h3 class="font-bold mb-3">Support</h3>
+        <ul class="space-y-2 text-sm text-gray-100">
+          <li><a href="{{ route('contact') }}" class="hover:underline">FAQ</a></li>
+          <li><a href="https://wa.me/085156504046" class="hover:underline">Call Center</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-10 text-center text-sm text-gray-100">
+      © 2025 All Rights Reserved.
+    </div>
+  </footer>
 
   </div>
 
