@@ -11,6 +11,7 @@
   @livewireStyles
   <!-- Favicon -->
   <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="font-sans bg-[#eef6fa] text-gray-800">
@@ -40,6 +41,15 @@
         <a href="#" class="bg-white text-[#45C3FF] px-4 py-1.5 rounded-md font-semibold hover:bg-opacity-90 transition">
           Get Started
         </a>
+        @if(Auth::check())
+          <form action="{{ route('logout') }}" method="POST" class="inline">
+            @csrf
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+              Logout
+            </button>
+          </form>
+        @endif
+
       </div>
 
       <!-- Hamburger (mobile) -->
@@ -78,9 +88,37 @@
           </li>
         </ul>
       </div>
+      
+
     </div>
   </nav>
 </div>
+ <!-- Flash message -->
+  @if (session('success'))
+    <div
+      x-data="{ show: true }"
+      x-show="show"
+      x-transition
+      x-init="setTimeout(() => show = false, 2000)"
+      class="fixed top-5 right-5 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-md"
+      role="alert">
+      <strong class="font-bold">✅ Sukses!</strong>
+      <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+  @endif
+
+  @if (session('error'))
+    <div
+      x-data="{ show: true }"
+      x-show="show"
+      x-transition
+      x-init="setTimeout(() => show = false, 2000)"
+      class="fixed top-5 right-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg shadow-md"
+      role="alert">
+      <strong class="font-bold">⚠️ Error:</strong>
+      <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+  @endif
 
 
 <!-- Padding top biar konten nggak ketiban navbar -->
@@ -416,6 +454,30 @@
     </div>
   </footer>
 
+  {{-- Sweat Alert Login --}}
+  @if (session('success'))
+<script>
+  Swal.fire({
+    icon: 'success',
+    title: 'Berhasil!',
+    text: '{{ session('success') }}',
+    showConfirmButton: false,
+    timer: 2000
+  });
+</script>
+@endif
+
+@if (session('error'))
+<script>
+  Swal.fire({
+    icon: 'error',
+    title: 'Gagal!',
+    text: '{{ session('error') }}',
+    showConfirmButton: false,
+    timer: 2500
+  });
+</script>
+@endif
 
   <!-- Hero Section -->
 

@@ -1,8 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-
+use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +35,16 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 // Halaman Contact
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
+// Register Auth Routes
+Route::get('/register', [RegisterController::class, 'showForm'])->middleware('guest')->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->middleware('guest');
+Route::get('/auth/google', [GoogleController::class, 'redirect'])->middleware('guest')->name('auth.google');
+Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->middleware('guest');
+
+// Logout Route
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/')->with('success', 'Berhasil logout!');
+})->name('logout')->middleware('auth');
