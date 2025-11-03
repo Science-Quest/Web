@@ -1,95 +1,153 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-  @vite('resources/css/app.css')
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-</head>
-<body class="bg-[#f3faff] flex items-center justify-center min-h-screen font-sans">
+@extends('layouts.auth')
 
-  <div class="bg-white w-[380px] rounded-2xl shadow-md overflow-hidden" x-data="{ step: 1 }">
+@section('title', 'Register')
 
-    <!-- Header -->
-    <div class="bg-[#54B9FF] p-6 rounded-b-3xl text-center relative">
-      <h2 class="text-white text-xl font-bold">REGISTER</h2>
-      <p class="text-white text-sm" x-show="step === 1">Lengkapi data akunmu</p>
-      <p class="text-white text-sm" x-show="step === 2">Hampir selesai!</p>
-      <div class="w-full bg-white/40 h-2 rounded-full mt-3">
-        <div class="h-2 bg-white rounded-full transition-all duration-300"
-             :class="step === 1 ? 'w-1/2' : 'w-full'"></div>
-      </div>
+@section('content')
+<div 
+  x-data="{ step: 1, showPassword: false, showConfirm: false }" 
+  class="min-h-screen bg-[#F6FBFF] flex flex-col items-center justify-start py-8">
+
+  <!-- Header -->
+  <div class="relative text-center">
+    <h2 class="text-[#002D57] text-2xl font-extrabold mt-2">REGISTER</h2>
+    <p class="text-[#617386] text-sm mt-1">Haloo... masukkan kredensialmu</p>
+
+    <!-- Progress Bar -->
+    <div class="flex justify-center items-center gap-2 mt-3">
+      <div class="w-24 h-2 rounded-full transition-all duration-500"
+           :class="step >= 1 ? 'bg-[#2FA8FF]' : 'bg-gray-300'"></div>
+      <div class="w-24 h-2 rounded-full transition-all duration-500"
+           :class="step >= 2 ? 'bg-[#2FA8FF]' : 'bg-gray-300'"></div>
     </div>
+  </div>
 
-    <!-- Error -->
-    @if ($errors->any())
-      <div class="bg-red-100 text-red-700 p-3 mx-6 mt-4 rounded-lg">
-        <ul class="list-disc pl-5 text-sm">
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
+  <!-- Error Validation -->
+  @if ($errors->any())
+    <div class="bg-red-100 text-red-700 p-3 mx-6 mt-4 rounded-lg w-80">
+      <ul class="list-disc pl-5 text-sm">
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
+  <!-- Form -->
+  <form method="POST" action="{{ route('register') }}" 
+        class="w-80 mt-6 space-y-4 bg-white p-6 rounded-3xl shadow-md">
+    @csrf
 
     <!-- Step 1 -->
-    <form method="POST" action="{{ route('register') }}" x-data="{ step: 1 }">
-  @csrf
+    <div x-show="step === 1" x-transition>
+      <div>
+        <label class="text-[#002D57] font-semibold">Username</label>
+        <input type="text" name="username" required 
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-[#54B9FF] focus:outline-none">
+      </div>
 
-  <!-- Step 1 -->
-  <div class="p-6 space-y-4" x-show="step === 1">
-    <div>
-      <label>Username</label>
-      <input type="text" name="username" required class="w-full border rounded-lg px-3 py-2 mt-1">
-    </div>
-
-    <div>
-      <label>Password</label>
-      <input type="password" name="password" required class="w-full border rounded-lg px-3 py-2 mt-1">
-    </div>
-
-    <div>
-      <label>Konfirmasi Password</label>
-      <input type="password" name="password_confirmation" required class="w-full border rounded-lg px-3 py-2 mt-1">
-    </div>
-
-    <button type="button" @click="step = 2" class="w-full bg-[#54B9FF] text-white py-2 rounded-lg font-bold">
-      LANJUTKAN
-    </button>
-
-    <div class="flex justify-center text-gray-400 text-sm">
-      <span>atau</span>
-    </div>
-
-    <a href="{{ route('auth.google') }}" class="flex items-center justify-center border py-2 rounded-lg hover:bg-gray-50 transition">
-      <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-2">
-      <span class="text-sm font-semibold text-gray-700">Sign Up With Google</span>
-    </a>
-  </div>
-
-  <!-- Step 2 -->
-  <div class="p-6 space-y-4" x-show="step === 2" x-transition>
-    <div>
-      <label>Tanggal lahir</label>
-      <input type="date" name="birth_date" class="w-full border rounded-lg px-3 py-2 mt-1">
-    </div>
-
-    <div>
-      <label>Email</label>
-      <input type="email" name="email" required class="w-full border rounded-lg px-3 py-2 mt-1">
-    </div>
-
-    <button type="submit" class="w-full bg-[#54B9FF] text-white py-2 rounded-lg font-bold">
-      REGISTER
-    </button>
-
-    <button type="button" @click="step = 1" class="w-full bg-gray-100 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-200">
-      Kembali
+<!-- Password -->
+<div class="mt-3">
+  <label class="text-[#002D57] font-semibold">Password</label>
+  <div class="relative">
+    <input 
+      :type="showPassword ? 'text' : 'password'" 
+      name="password" 
+      required
+      class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 
+             focus:ring-2 focus:ring-[#54B9FF] focus:outline-none"
+    >
+    <!-- Tombol toggle password -->
+    <button 
+      type="button"
+      @click="showPassword = !showPassword"
+      class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 
+             hover:text-[#54B9FF] transition"
+    >
+      <!-- Mata terbuka -->
+      <i x-show="!showPassword" data-lucide="eye" class="w-5 h-5"></i>
+      <!-- Mata dicoret -->
+      <i x-show="showPassword" data-lucide="eye-off" class="w-5 h-5"></i>
     </button>
   </div>
-</form>
+</div>
 
+<!-- Konfirmasi Password -->
+<div class="mt-3">
+  <label class="text-[#002D57] font-semibold">Konfirmasi Password</label>
+  <div class="relative">
+    <input 
+      :type="showConfirm ? 'text' : 'password'" 
+      name="password_confirmation" 
+      required
+      class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 
+             focus:ring-2 focus:ring-[#54B9FF] focus:outline-none"
+    >
+    <!-- Tombol toggle konfirmasi password -->
+    <button 
+      type="button"
+      @click="showConfirm = !showConfirm"
+      class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 
+             hover:text-[#54B9FF] transition"
+    >
+      <!-- Mata terbuka -->
+      <i x-show="!showConfirm" data-lucide="eye" class="w-5 h-5"></i>
+      <!-- Mata dicoret -->
+      <i x-show="showConfirm" data-lucide="eye-off" class="w-5 h-5"></i>
+    </button>
   </div>
-</body>
-</html>
+</div>
+
+
+      <button type="button" @click="step = 2"
+              class="w-full bg-[#2FA8FF] text-white font-bold py-2 rounded-lg mt-5 hover:bg-[#1E96E1] transition">
+        LANJUTKAN
+      </button>
+
+      <div class="text-center text-gray-500 text-sm mt-3">atau</div>
+
+      <a href="{{ route('auth.google') }}" 
+         class="flex items-center justify-center border py-2 rounded-lg mt-2 hover:bg-gray-50 transition">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-2">
+        <span class="text-sm font-semibold text-gray-700">Sign Up With Google</span>
+      </a>
+    </div>
+
+    <!-- Step 2 -->
+    <div x-show="step === 2" x-transition>
+      <div>
+        <label class="text-[#002D57] font-semibold">Tanggal lahir</label>
+        <input type="date" name="birth_date"
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-[#54B9FF] focus:outline-none">
+      </div>
+
+      <div class="mt-3">
+        <label class="text-[#002D57] font-semibold">Email 
+          <span class="text-gray-500 text-sm">(direkomendasikan)</span></label>
+        <input type="email" name="email"
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 mt-1 focus:ring-2 focus:ring-[#54B9FF] focus:outline-none">
+      </div>
+
+      <button type="submit" 
+              class="w-full bg-[#2FA8FF] text-white font-bold py-2 rounded-lg mt-5 hover:bg-[#1E96E1] transition">
+        REGISTER
+      </button>
+
+      <p class="text-center text-sm text-gray-600 mt-2">
+        Sudah punya akun?
+        <a href="{{ route('login') }}" class="text-[#FF5C00] font-semibold hover:underline">
+          Login disini
+        </a>
+      </p>
+
+      <button type="button" @click="step = 1"
+              class="w-full bg-[#E8F5FF] text-[#002D57] font-semibold py-2 rounded-xl mt-3 flex items-center justify-center gap-2 hover:bg-[#D9EEFF] transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" 
+             stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+        Kembali
+      </button>
+    </div>
+  </form>
+</div>
+@endsection
