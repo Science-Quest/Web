@@ -43,10 +43,19 @@
 
       <!-- Auth Buttons (desktop & tablet) -->
       <div class="hidden md:flex items-center gap-4 font-semibold">
-        <a href="#" class="hover:opacity-80 transition">Sign In</a>
-        <a href="#" class="bg-white text-[#45C3FF] px-4 py-1.5 rounded-md font-semibold hover:bg-opacity-90 transition">
-          Get Started
-        </a>
+        @guest
+          <a href="{{ route('login.form') }}" class="hover:opacity-80 transition">Sign In</a>
+          <a href="{{ route('register') }}" class="bg-white text-[#45C3FF] px-4 py-1.5 rounded-md font-semibold hover:bg-opacity-90 transition">
+            Get Started
+          </a>
+        @else
+          <form action="{{ route('logout') }}" method="POST" class="inline">
+            @csrf
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+              Logout
+            </button>
+          </form>
+        @endguest
       </div>
 
       <!-- Hamburger (mobile) -->
@@ -73,16 +82,29 @@
         x-transition 
         class="absolute top-20 left-0 w-full flex justify-center md:hidden"
         @click.away="open = false">
+
         <ul class="bg-[#45C3FF] rounded-2xl shadow-lg w-[90%] py-6 flex flex-col items-center gap-4 font-semibold text-white">
           <li><a href="{{ url('/') }}" class="hover:opacity-80">Home</a></li>
           <li><a href="{{ route('about') }}" class="hover:opacity-80">Tentang Kami</a></li>
           <li><a href="{{ route('contact') }}" class="hover:opacity-80">Kontak</a></li>
-          <li><a href="#" class="hover:opacity-80">Sign In</a></li>
-          <li>
-            <a href="#" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
-              Get Started
-            </a>
-          </li>
+
+          @guest
+            <li><a href="{{ route('login.form') }}" class="hover:opacity-80">Sign In</a></li>
+            <li>
+              <a href="{{ route('register') }}" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+                Get Started
+              </a>
+            </li>
+          @else
+            <li>
+              <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                  Logout
+                </button>
+              </form>
+            </li>
+          @endguest
         </ul>
       </div>
     </nav>

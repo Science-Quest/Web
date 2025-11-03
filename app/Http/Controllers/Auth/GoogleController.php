@@ -20,9 +20,14 @@ class GoogleController extends Controller
 
     public function callback()
     {
-        try {
+        Log::info('Google callback triggered');
 
-            $googleUser = Socialite::driver('google')->stateless()->user();
+        try {
+            $googleUser = Socialite::driver('google')->user();
+            Log::info('Google user data:', [
+                'email' => $googleUser->getEmail(),
+                'name' => $googleUser->getName(),
+            ]);
 
             $user = User::where('email', $googleUser->getEmail())->first();
 
@@ -36,11 +41,12 @@ class GoogleController extends Controller
                     'avatar' => $googleUser->getAvatar(),
                     'password' => bcrypt(Str::random(16)),
                 ]);
+                Log::info('User baru dibuat:', ['email' => $user->email]);
             }
 
-
-
             Auth::login($user);
+            Log::info('User berhasil login via Google:', ['email' => $user->email]);
+
             return redirect('/')->with('success', 'Berhasil login dengan Google!');
         } catch (Exception $e) {
             Log::error('Google Login Error: ' . $e->getMessage());

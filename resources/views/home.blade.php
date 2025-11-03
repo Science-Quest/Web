@@ -31,25 +31,25 @@
     <ul class="hidden md:flex flex-1 justify-center items-center gap-12 font-semibold">
       <li><a href="{{ url('/') }}">Home</a></li>
       <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-      <li><a href="#">Kontak</a></li>
+      <li><a href="{{ route('contact') }}">Kontak</a></li>
     </ul>
 
 
       <!-- Auth Buttons (desktop & tablet) -->
       <div class="hidden md:flex items-center gap-4 font-semibold">
-        <a href="#" class="hover:opacity-80 transition">Sign In</a>
-        <a href="#" class="bg-white text-[#45C3FF] px-4 py-1.5 rounded-md font-semibold hover:bg-opacity-90 transition">
-          Get Started
-        </a>
-        @if(Auth::check())
+        @guest
+          <a href="{{ route('login.form') }}" class="hover:opacity-80 transition">Sign In</a>
+          <a href="{{ route('register') }}" class="bg-white text-[#45C3FF] px-4 py-1.5 rounded-md font-semibold hover:bg-opacity-90 transition">
+            Get Started
+          </a>
+        @else
           <form action="{{ route('logout') }}" method="POST" class="inline">
             @csrf
             <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
               Logout
             </button>
           </form>
-        @endif
-
+        @endguest
       </div>
 
       <!-- Hamburger (mobile) -->
@@ -76,16 +76,29 @@
         x-transition 
         class="absolute top-20 left-0 w-full flex justify-center md:hidden"
         @click.away="open = false">
+
         <ul class="bg-[#45C3FF] rounded-2xl shadow-lg w-[90%] py-6 flex flex-col items-center gap-4 font-semibold text-white">
           <li><a href="{{ url('/') }}" class="hover:opacity-80">Home</a></li>
           <li><a href="{{ route('about') }}" class="hover:opacity-80">Tentang Kami</a></li>
           <li><a href="{{ route('contact') }}" class="hover:opacity-80">Kontak</a></li>
-          <li><a href="#" class="hover:opacity-80">Sign In</a></li>
-          <li>
-            <a href="#register" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
-              Get Started
-            </a>
-          </li>
+
+          @guest
+            <li><a href="{{ route('login.form') }}" class="hover:opacity-80">Sign In</a></li>
+            <li>
+              <a href="{{ route('register') }}" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+                Get Started
+              </a>
+            </li>
+          @else
+            <li>
+              <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                  Logout
+                </button>
+              </form>
+            </li>
+          @endguest
         </ul>
       </div>
       
@@ -93,32 +106,6 @@
     </div>
   </nav>
 </div>
- <!-- Flash message -->
-  @if (session('success'))
-    <div
-      x-data="{ show: true }"
-      x-show="show"
-      x-transition
-      x-init="setTimeout(() => show = false, 2000)"
-      class="fixed top-5 right-5 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-md"
-      role="alert">
-      <strong class="font-bold">✅ Sukses!</strong>
-      <span class="block sm:inline">{{ session('success') }}</span>
-    </div>
-  @endif
-
-  @if (session('error'))
-    <div
-      x-data="{ show: true }"
-      x-show="show"
-      x-transition
-      x-init="setTimeout(() => show = false, 2000)"
-      class="fixed top-5 right-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg shadow-md"
-      role="alert">
-      <strong class="font-bold">⚠️ Error:</strong>
-      <span class="block sm:inline">{{ session('error') }}</span>
-    </div>
-  @endif
 
 
 <!-- Padding top biar konten nggak ketiban navbar -->
