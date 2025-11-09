@@ -31,10 +31,14 @@ Route::get('/games/penguin-dash', function () {
     return view('logic-games.penguin-dash-detail');
 })->name('games.penguin-dash-detail');
 
+// About Page
 Route::get('/about', [PageController::class, 'about'])->name('about');
 
 // Halaman Contact
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+
+// Subscribe Page
+Route::get('/subscribe', [PageController::class, 'subscribe'])->name('subscribe');
 
 
 // ===========================

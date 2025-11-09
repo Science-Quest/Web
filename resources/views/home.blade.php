@@ -32,6 +32,7 @@
       <li><a href="{{ url('/') }}">Home</a></li>
       <li><a href="{{ route('about') }}">Tentang Kami</a></li>
       <li><a href="{{ route('contact') }}">Kontak</a></li>
+      <li><a href="{{ route('subscribe') }}">Subscribe</a></li>
     </ul>
 
 
@@ -81,6 +82,7 @@
           <li><a href="{{ url('/') }}" class="hover:opacity-80">Home</a></li>
           <li><a href="{{ route('about') }}" class="hover:opacity-80">Tentang Kami</a></li>
           <li><a href="{{ route('contact') }}" class="hover:opacity-80">Kontak</a></li>
+          <li><a href="{{ route('subscribe') }}" class="hover:opacity-80">Subscribe</a></li>
 
           @guest
             <li><a href="{{ route('login.form') }}" class="hover:opacity-80">Sign In</a></li>

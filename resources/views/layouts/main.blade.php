@@ -39,6 +39,7 @@
         <li><a href="{{ url('/') }}" class="hover:opacity-80 transition">Home</a></li>
         <li><a href="{{ route('about') }}" class="hover:opacity-80 transition">Tentang Kami</a></li>
         <li><a href="{{ route('contact') }}" class="hover:opacity-80 transition">Kontak</a></li>
+        <li><a href="{{ route('subscribe') }}" class="hover:opacity-80">Subscribe</a></li>
       </ul>
 
       <!-- Auth Buttons (desktop & tablet) -->
@@ -87,6 +88,7 @@
           <li><a href="{{ url('/') }}" class="hover:opacity-80">Home</a></li>
           <li><a href="{{ route('about') }}" class="hover:opacity-80">Tentang Kami</a></li>
           <li><a href="{{ route('contact') }}" class="hover:opacity-80">Kontak</a></li>
+          <li><a href="{{ route('subscribe') }}" class="hover:opacity-80">Subscribe</a></li>
 
           @guest
             <li><a href="{{ route('login.form') }}" class="hover:opacity-80">Sign In</a></li>
