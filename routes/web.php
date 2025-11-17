@@ -67,3 +67,24 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout')
     ->middleware('auth');
+
+
+// profile
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/update-username', [ProfileController::class, 'updateUsername'])->name('profile.update.username');
+    Route::post('/profile/update-info', [ProfileController::class, 'updateInfo'])->name('profile.update.info');
+    Route::delete('/profile/delete', [ProfileController::class, 'deleteAccount'])->name('profile.delete');
+    Route::post('/profile/update-avatar', [ProfileController::class, 'updateAvatar'])
+        ->name('profile.update.avatar');
+    Route::get('/profile/personal-data', [ProfileController::class, 'personalData'])->name('profile.personal');
+    Route::post('/profile/personal-data/update', [ProfileController::class, 'updatePersonalData'])->name('profile.personal.update');
+
+    // setting password
+    Route::get('/settings', [UserController::class, 'settings'])->name('settings');
+    Route::post('/settings/update-password', [UserController::class, 'updatePassword'])->name('settings.updatePassword');
+    Route::post('/settings/update-email', [UserController::class, 'updateEmail'])->name('settings.updateEmail');
+});
