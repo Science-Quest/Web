@@ -45,18 +45,29 @@
       <!-- Auth Buttons (desktop & tablet) -->
       <div class="hidden md:flex items-center gap-4 font-semibold">
         @guest
-          <a href="{{ route('login.form') }}" class="hover:opacity-80 transition">Sign In</a>
-          <a href="{{ route('register') }}" class="bg-white text-[#45C3FF] px-4 py-1.5 rounded-md font-semibold hover:bg-opacity-90 transition">
+    <li><a href="{{ route('login.form') }}" class="hover:opacity-80">Sign In</a></li>
+    <li>
+        <a href="{{ route('register') }}"
+            class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
             Get Started
-          </a>
-        @else
-          <form action="{{ route('logout') }}" method="POST" class="inline">
-            @csrf
-            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-              Logout
-            </button>
-          </form>
-        @endguest
+        </a>
+    </li>
+@else
+    <li>
+        {{-- Tombol/Link yang berisi Avatar dan Username, mengarah ke profile --}}
+        <a href="{{ route('profile') }}" class="flex items-center gap-3 hover:opacity-90 transition">
+            {{-- Avatar --}}
+            <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : 'https://i.pravatar.cc/40?u=' . auth()->user()->id }}"
+                class="w-9 h-9 rounded-full border-2 border-white shadow">
+
+            {{-- Username --}}
+            <span class="font-semibold text-white">
+                {{ auth()->user()->username }}
+            </span>
+        </a>
+    </li>
+@endguest
+
       </div>
 
       <!-- Hamburger (mobile) -->
@@ -91,22 +102,29 @@
           <li><a href="{{ route('subscribe') }}" class="hover:opacity-80">Subscribe</a></li>
 
           @guest
-            <li><a href="{{ route('login.form') }}" class="hover:opacity-80">Sign In</a></li>
-            <li>
-              <a href="{{ route('register') }}" class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
-                Get Started
-              </a>
-            </li>
-          @else
-            <li>
-              <form action="{{ route('logout') }}" method="POST" class="inline">
-                @csrf
-                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                  Logout
-                </button>
-              </form>
-            </li>
-          @endguest
+    <li><a href="{{ route('login.form') }}" class="hover:opacity-80">Sign In</a></li>
+    <li>
+        <a href="{{ route('register') }}"
+            class="bg-white text-[#45C3FF] px-4 py-1 rounded-md font-semibold hover:bg-opacity-90 transition">
+            Get Started
+        </a>
+    </li>
+@else
+    <li>
+        {{-- Tombol/Link yang berisi Avatar dan Username, mengarah ke profile --}}
+        <a href="{{ route('profile') }}" class="flex items-center gap-3 hover:opacity-90 transition">
+            {{-- Avatar --}}
+            <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : 'https://i.pravatar.cc/40?u=' . auth()->user()->id }}"
+                class="w-9 h-9 rounded-full border-2 border-white shadow">
+
+            {{-- Username --}}
+            <span class="font-semibold text-white">
+                {{ auth()->user()->username }}
+            </span>
+        </a>
+    </li>
+@endguest
+
         </ul>
       </div>
     </nav>
