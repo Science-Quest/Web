@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
+
 
 
 class GoogleController extends Controller
@@ -41,6 +44,17 @@ class GoogleController extends Controller
                     'avatar' => $googleUser->getAvatar(),
                     'password' => bcrypt(Str::random(16)),
                 ]);
+
+                // --- DOWNLOAD THE AVATAR ---
+                if ($user->avatar) {
+                    $image = Http::get($user->avatar)->body();
+                    $filename = $user->id . '.jpg';
+
+                    Storage::disk('public')->put($filename, $image);
+
+                    $user->avatar = $filename;
+                    $user->save();
+                }
                 Log::info('User baru dibuat:', ['email' => $user->email]);
             }
 

@@ -28,6 +28,8 @@ class User extends Authenticatable
         'birth_date',
     ];
 
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     /**
      * The attributes that should be hidden for serialization.
