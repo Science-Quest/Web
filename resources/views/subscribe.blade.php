@@ -52,10 +52,11 @@
                     <li class="flex items-center gap-2">✓ Game Aritmetika & Logika</li>
                 </ul>
 
-                <button
-                    class="w-full py-2.5 sm:py-3 bg-[#54B9FF] hover:bg-[#3fa4ea] text-white font-semibold sm:font-bold rounded-xl transition text-sm sm:text-base">
+                <a href="{{ url('/#categories') }}"
+                    class="w-full py-2.5 sm:py-3 bg-[#54B9FF] hover:bg-[#3fa4ea] text-white font-semibold sm:font-bold rounded-xl transition text-sm sm:text-base block text-center">
                     Mulai Gratis
-                </button>
+                </a>
+
             </div>
 
             <!-- Premium Bulanan -->

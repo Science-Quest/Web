@@ -241,28 +241,28 @@
                 <div
                     class="relative animate-fade-in-left  bg-white border border-gray-200 rounded-2xl overflow-hidden w-full shadow-sm hover:shadow-md transition">
 
-                    <div class="absolute z-20 rounded-lg p-4 -translate-1/2 top-1/2 left-1/2 bg-white">
+                    {{-- <div class="absolute z-20 rounded-lg p-4 -translate-1/2 top-1/2 left-1/2 bg-white">
                         <img class="relative -top-2" src="{{ asset('img/under-construction.png') }}"
                             alt="This section is still under construction">
                         <p class="text-center text-sm">Maaf, topik ini masih dalam tahap pengembangan</p>
                     </div>
 
                     <div class="absolute z-10 bg-black opacity-30 w-full h-full">
-                    </div>
+                    </div> --}}
 
                     <div class="h-32 bg-gray-100">
-                        <img src="{{ asset('img/biologi.png') }}" alt="math"
+                        <img src="{{ asset('img/memori.png') }}" alt="math"
                             class="h-full w-full object-cover" />
                     </div>
 
                     <div id="card-description-biologi" class=" p-4 text-center flex flex-col justify-between h-68">
                         <div>
-                            <h3 class="font-bold text-gray-800">Biologi</h3>
-                            <p class="text-sm text-gray-500 mt-1">Perluas pengetahuan alam mu</p>
+                            <h3 class="font-bold text-gray-800">Memori</h3>
+                            <p class="text-sm text-gray-500 mt-1">Menghafal jalur mengemudi</p>
                         </div>
                         <div>
-                            <p class="font-bold mt-4 mb-2 text-sm">Game: Symbiosis</p>
-                            <livewire:level-selector game="symbiosis" />
+                            <p class="font-bold mt-4 mb-2 text-sm">Game: Bomb Road</p>
+                            <livewire:level-selector game="bomb-road" />
                         </div>
                     </div>
                 </div>
