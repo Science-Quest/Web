@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\PlayResult;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->post('/progress/{gameId}/complete', function (Request $request, $gameId) {
+    $userId = auth()->id();
+    $level = $request->level;
+    $score = $request->score;
+    $numOfCorrect = $request->num_of_correct;
+    $time = $request->time;
+
+    // Get the latest level completed by this user for this game
+    $latestLevel = PlayResult::where('user_id', $userId)
+        ->where('game_id', $gameId)
+        ->max('level') ?? 0;
+
+    // Enforce sequential play
+    if ($level > $latestLevel + 1) {
+        return response()->json([
+            'success' => false,
+            'error' => 'Level locked. You must complete previous levels first.'
+        ], 403);
+    }
+
+    // Save the new play result
+    $playResult = PlayResult::updateOrCreate(
+        [
+            'user_id' => $userId,
+            'quest_id' => $gameId,
+        ],
+        [
+            'level' => $level,
+            'score' => $score,
+            'num_of_correct' => $numOfCorrect,
+            'time' => $time
+        ]
+    );
+
+    return response()->json([
+        'success' => true,
+        'next_level' => $level + 1
+    ]);
 });

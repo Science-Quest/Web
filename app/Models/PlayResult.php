@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class PlayResult extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'quest_id',
+        'level',
+        'time',
+        'num_of_correct',
+        'score'
+    ];
+
+    // Relationships (optional, but recommended)
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

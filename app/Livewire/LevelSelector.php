@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\PlayResult;
 
 class LevelSelector extends Component
 {
@@ -10,15 +11,20 @@ class LevelSelector extends Component
     public $selectedLevel = null;
     public $game;
 
-    public function mount($game)
+    public function mount($game, $userId)
     {
         $this->game = $game;
+        $latestLevel = PlayResult::where('user_id', $userId)
+            ->where('quest_id', $game)
+            ->max('level');
 
-        // ✅ 25 levels, all unlocked, no scoring
-        $this->levels = collect(range(1, 25))->map(function ($i) {
+        logger('Latest level:', ['user_id' => $userId, 'quest_id' => $game, 'latestLevel' => $latestLevel]);        // If no level played yet, set latestLevel to 0
+        $latestLevel = $latestLevel ?? 0;
+
+        $this->levels = collect(range(1, 25))->map(function ($i) use ($latestLevel) {
             return [
                 'id' => $i,
-                'unlocked' => true,
+                'unlocked' => $i <= $latestLevel + 1, // unlock levels <= last + 1
                 'score' => null,
             ];
         })->toArray();

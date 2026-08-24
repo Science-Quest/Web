@@ -195,7 +195,7 @@
                         </div>
                         <div>
                             <p class="font-bold mt-4 mb-2 text-sm">Game: Penguin Dash</p>
-                            <livewire:level-selector game="penguin-dash" />
+                            <livewire:level-selector game="penguin-dash" userId="{{ Auth::user()->id ?? 0 }}" />
                         </div>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                         </div>
                         <div>
                             <p class="font-bold mt-4 mb-2 text-sm">Game: Connect Things</p>
-                            <livewire:level-selector game="connect-things" />
+                            <livewire:level-selector game="connect-things" userId="{{ Auth::user()->id ?? 0 }}" />
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                         </div>
                         <div>
                             <p class="font-bold mt-4 mb-2 text-sm">Game: Box Recall</p>
-                            <livewire:level-selector game="box-recall" />
+                            <livewire:level-selector game="box-recall" userId="{{ Auth::user()->id ?? 0 }}" />
                         </div>
                     </div>
 
@@ -262,7 +262,7 @@
                         </div>
                         <div>
                             <p class="font-bold mt-4 mb-2 text-sm">Game: Bomb Road</p>
-                            <livewire:level-selector game="bomb-road" />
+                            <livewire:level-selector game="bomb-road" userId="{{ Auth::user()->id ?? 0 }}" />
                         </div>
                     </div>
                 </div>
